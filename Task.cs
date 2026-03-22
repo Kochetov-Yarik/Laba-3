@@ -9,9 +9,24 @@
         _totalPayments++;
         _paymentId = _totalPayments;
         _type = type;
-        _amount = amount;
+        ChangeAmount(amount);
     }
     public Payment(string type) : this(0m, type)
     {
     }
+    public void ChangeAmount(decimal newAmount)
+    {
+        if (newAmount >= 0)
+        {
+            _amount = newAmount;
+        }
+        else
+        {
+            Console.WriteLine("Сума не може бути від'ємною!");
+        }
+    public bool IsLarge(decimal limit)
+    {
+        return _amount > limit;
+    }
+}
 }
