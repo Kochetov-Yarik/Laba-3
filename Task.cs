@@ -24,9 +24,17 @@
         {
             Console.WriteLine("Сума не може бути від'ємною!");
         }
+    }
     public bool IsLarge(decimal limit)
     {
         return _amount > limit;
     }
-}
+     public static int TotalPayments()
+    {
+        return _totalPayments;
+    }
+    public override string ToString()
+    {
+        return $"Платіж №{_paymentId} | Тип: {_type} | Сума: {_amount} грн.";
+    }
 }
