@@ -37,6 +37,41 @@
     {
         return $"Платіж №{_paymentId} | Тип: {_type} | Сума: {_amount} грн.";
     }
+     //ЗАВДАННЯ 2
+    public int PaymentId
+    {
+        get { return _paymentId; }
+    }
+
+    public string Type
+    {
+        get { return _type; }
+    }
+    public decimal Amount
+    {
+        get { return _amount; }
+    }
+    public Payment(int paymentId, decimal amount, string type)
+    {
+        _paymentId = paymentId;
+        _amount = amount;
+        _type = type;
+    }
+    public void SaveToJson(string filePath)
+    {
+        string json = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+        System.IO.File.WriteAllText(filePath, json);
+        Console.WriteLine($"\nДані збережено у файл: {filePath}");
+    }
+    public static Payment LoadFromJson(string filePath)
+    {
+        if (System.IO.File.Exists(filePath))
+        {
+            string json = System.IO.File.ReadAllText(filePath);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<Payment>(json);
+        }
+        return null;
+    }
 }
 class Program
 {
